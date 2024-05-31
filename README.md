@@ -3,4 +3,4 @@
 
 ## local test
 sh bin/setup.sh
-source venv/bin/activate
+source venv/bin/activate or source venv/Scripts/activate
