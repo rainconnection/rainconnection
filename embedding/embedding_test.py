@@ -1,8 +1,8 @@
-from feature_embedding import embedding_model
+from feature_embedding import FeatureEmbeddingModel
 
 
 if __name__ == '__main__':
-    model = embedding_model()
+    model = FeatureEmbeddingModel()
 
     print(model.embedding_dict.item2idx)
     print(model.embedding_dict.idx2item)

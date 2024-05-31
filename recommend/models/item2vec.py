@@ -4,12 +4,12 @@ from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
 from typing import List
 
-from ...embedding.feature_embedding import embedding_model
+from ...embedding.feature_embedding import FeatureEmbeddingModel
 
 from time import time
 
 
-class item2vec(embedding_model):
+class item2vec(FeatureEmbeddingModel):
     
     def fit(self, train_data, epochs, optimizer):
         self.optimizer = optimizer

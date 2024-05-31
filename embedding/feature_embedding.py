@@ -5,13 +5,13 @@ from typing import List
 
 from time import time
 
-class embedding_model(nn.Module):
+class FeatureEmbeddingModel(nn.Module):
     def __init__(self, items : List[str] = ['test_item_1', 'test_item_2'],
                 vector_dim = 2**7,
                 activation_function = nn.Sigmoid()):
-        super(embedding_model, self).__init__()
+        super(FeatureEmbeddingModel, self).__init__()
 
-        self.embedding_dict = embedding_dict(items, vector_dim)
+        self.embedding_dict = EmbeddingDict(items, vector_dim)
         self.activation_function = activation_function
 
         
@@ -61,9 +61,9 @@ class embedding_model(nn.Module):
 
 
 
-class embedding_dict(nn.Module):
+class EmbeddingDict(nn.Module):
     def __init__(self, items : List[str], vector_dim = 2**7):
-        super(embedding_dict, self).__init__()
+        super(EmbeddingDict, self).__init__()
         self.vector_dim = vector_dim
         self.items = set()
 
