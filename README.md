@@ -3,8 +3,8 @@
 * 폴더 형태 변경으로 조금 문제 있을 수 있다.
 
 ## local test
-sh bin/setup.sh
-source venv/bin/activate or source venv/Scripts/activate
+1. sh bin/setup.sh
+2. (source venv/bin/activate) or (source venv/Scripts/activate)
 
 
 ## 현재 recommend folder에 업데이트가 많다.
