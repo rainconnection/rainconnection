@@ -4,3 +4,6 @@
 ## local test
 sh bin/setup.sh
 source venv/bin/activate or source venv/Scripts/activate
+
+
+## 현재 recommend folder에 업데이트가 많다.
