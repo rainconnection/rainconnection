@@ -23,13 +23,13 @@ class FactorizationMachine(nn.Module):
         sum_of_square = torch.sum(feature_emb, dim=1)**2
         square_of_sum = torch.sum(feature_emb**2, dim=1)
 
-        interaction = (sum_of_square - square_of_sum) * 0.5
+        interaction = (sum_of_square - square_of_sum) * 0.5 # [batch_size, feature_dim]
 
-        additioned = torch.sum(self.LogisticEmbeddingDict(x), dim=1)
+        additioned = torch.sum(self.LogisticEmbeddingDict(x), dim=1) # [batch_size, 1]
         if self.bias is not None:
             additioned += self.bias
 
-        output = interaction + additioned
+        output = interaction + additioned # [batch_size, emb_dim]
 
         return output
 

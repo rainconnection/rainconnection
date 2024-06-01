@@ -21,14 +21,22 @@ class DeepFM(nn.Module):
 
         self.fm_block = FactorizationMachine(category_list, bias_yn)
         self.hidden_layers = nn.ModuleList()
+
         for i in range(len(hidden_dims)-1):
             self.hidden_layers.append(nn.Linear(hidden_dims[i], hidden_dims[i+1]))
             self.hidden_layers.append(hidden_act)
             if dropout is not None:
                 self.hidden_layers.append(dropout)
 
+        self.hidden_layers = nn.Sequential(self.hidden_layers)
+
     def forward(self, x, feature_emb):
-        fm_output = self.fm_block(x, feature_emb)
+        fm_output = self.fm_block(x, feature_emb) # [batch_size, feature_dim]
+        higher_output = self.hidden_layers(feature_emb) # [batch_size, feature_dim, last_hidden_dim]
+
+        output = fm_output + higher_output.sum(dim=1)
+
+        return output
 
 
 
