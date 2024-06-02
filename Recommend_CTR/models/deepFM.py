@@ -16,26 +16,40 @@ class DeepFM(nn.Module):
                  hidden_dims : List[int] = [16, 16, 16],
                  hidden_act = nn.ReLU(),
                  bias_yn = True,
-                 dropout = None):
+                 dropout_ratio = None,
+                 pooling_type = 'sum',
+                 output_act = None):
         super(DeepFM, self).__init__()
 
-        self.fm_block = FactorizationMachine(category_list, bias_yn)
-        self.hidden_layers = nn.ModuleList()
+        # Factorization Machine for fm layer
+        self.fm_layer = FactorizationMachine(category_list, bias_yn)
+
+        # sequential layer for higher interaction
+        layer_list = nn.ModuleList()
+        self.pooling_type = pooling_type
+        self.output_act = output_act
 
         for i in range(len(hidden_dims)-1):
-            self.hidden_layers.append(nn.Linear(hidden_dims[i], hidden_dims[i+1]))
-            self.hidden_layers.append(hidden_act)
+            layer_list.append(nn.Linear(hidden_dims[i], hidden_dims[i+1]))
+            layer_list.append(nn.BatchNorm1d(hidden_dims[i+1]))
+            layer_list.append(hidden_act)
             if dropout is not None:
-                self.hidden_layers.append(dropout)
+                layer_list.append(nn.Dropout(dropout_ratio))
 
-        self.hidden_layers = nn.Sequential(self.hidden_layers)
+        self.hidden_layers = nn.Sequential(*layer_list)
 
     def forward(self, x, feature_emb):
-        fm_output = self.fm_block(x, feature_emb) # [batch_size, feature_dim]
+        fm_output = self.fm_layer(x, feature_emb) # [batch_size, feature_dim]
         higher_output = self.hidden_layers(feature_emb) # [batch_size, feature_dim, last_hidden_dim]
 
-        output = fm_output + higher_output.sum(dim=1)
+        if self.pooling_type == 'sum':
+            output = fm_output + higher_output.sum(dim=1) # [batch_size, feature_dim]
+        elif self.pooling_type == 'flatten':
+            output = fm_output + higher_output.flatten(start_dim=1)) # [batch_size, feature_dim * last_hidden_dim] = [batch_size, hidden_dims[-1]]
 
+        if self.output_act is not None:
+            output = self.output_act(output)
+        
         return output
 
 

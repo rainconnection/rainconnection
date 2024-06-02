@@ -29,7 +29,7 @@ class FactorizationMachine(nn.Module):
         if self.bias is not None:
             additioned += self.bias
 
-        output = interaction + additioned # [batch_size, emb_dim]
-
+        output = interaction + additioned # [batch_size, feature_dim]
+        
         return output
 

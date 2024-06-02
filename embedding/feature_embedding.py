@@ -3,8 +3,6 @@ from torch import nn, tensor
 
 from typing import List
 
-from time import time
-
 class FeatureEmbeddingModel(nn.Module):
     def __init__(self, items : List[str] = ['test_item_1', 'test_item_2'],
                 vector_dim = 2**7,
