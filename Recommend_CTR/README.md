@@ -5,6 +5,9 @@
 * 간단하면서도 꽤나 유용
 * log 수집 환경 내에서 update는 필요없긴 하다.
 
+#### thompson simulation
+python recommend/thompson_simulation.py
+
 ## RRF
 Reciprocal rank fusion
 * 다양한 ranking model output을 조합하는데에 유용한 듯.
@@ -24,7 +27,10 @@ Reciprocal rank fusion
 ## Factorization Machine
 * deepFM을 위한 모듈. 이것만 써도 되긴 되겠다
 ![from https://arxiv.org/abs/1703.04247](image-1.png)
-## local test
 
-#### thompson simulation
-python recommend/thompson_simulation.py
+## GDCN
+* Towards Deeper, Lighter and Interpretable Cross Network for CTR Prediction (2023)
+    * https://arxiv.org/pdf/2311.04635v1
+* 진행 예정
+
+# local test
