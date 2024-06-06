@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(os.path.abspath(
 import torch
 from torch import nn
 from embedding.feature_embedding import FeatureEmbeddingModel
-from fm import FactorizationMachine
+from .fm import FactorizationMachine
 
 from typing import List
 
@@ -33,7 +33,7 @@ class DeepFM(nn.Module):
             layer_list.append(nn.Linear(hidden_dims[i], hidden_dims[i+1]))
             layer_list.append(nn.BatchNorm1d(hidden_dims[i+1]))
             layer_list.append(hidden_act)
-            if dropout is not None:
+            if dropout_ratio is not None:
                 layer_list.append(nn.Dropout(dropout_ratio))
 
         self.hidden_layers = nn.Sequential(*layer_list)
@@ -45,12 +45,15 @@ class DeepFM(nn.Module):
         if self.pooling_type == 'sum':
             output = fm_output + higher_output.sum(dim=1) # [batch_size, feature_dim]
         elif self.pooling_type == 'flatten':
-            output = fm_output + higher_output.flatten(start_dim=1)) # [batch_size, feature_dim * last_hidden_dim] = [batch_size, hidden_dims[-1]]
+            output = fm_output + higher_output.flatten(start_dim=1) # [batch_size, feature_dim * last_hidden_dim] = [batch_size, hidden_dims[-1]]
 
         if self.output_act is not None:
             output = self.output_act(output)
         
         return output
+    
+    def fit(self, x, feature_emb):
+        pass
 
-
-
+    def _do_batch(self):
+        pass
