@@ -1,3 +1,5 @@
+# 간단한 추천 및 순위 코드 작성해보기
+* 기초 다지기용 코드 저장소
 ## mab-thompson
 * 기본적인 user action 기반 sampling - recommend(rank 등)
 * 간단하면서도 꽤나 유용

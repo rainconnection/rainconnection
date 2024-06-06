@@ -10,7 +10,7 @@ if [[ ! -d ${root}/venv ]]; then
 
     python3 -m venv ${root}/venv
 
-    source ${root}/venv/Scripts/activate
+    source ${root}/venv/Scripts/activatex
 
     pip install --upgrade pip \
     pip install -r ${root}/requirements.txt
