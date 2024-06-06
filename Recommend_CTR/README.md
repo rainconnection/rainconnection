@@ -31,6 +31,9 @@ Reciprocal rank fusion
 ## GDCN
 * Towards Deeper, Lighter and Interpretable Cross Network for CTR Prediction (2023)
     * https://arxiv.org/pdf/2311.04635v1
+    * 고차원 상호작용 대한 설명력 및 효과를 증대시키기
+        * gated deep cross network (GDCN) : 고차원 상호작용
+        * feild-level dimension optimization (FDO) : GDCN의 중요도 학습
 * 진행 예정
 
 # local test
