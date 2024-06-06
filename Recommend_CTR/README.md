@@ -28,7 +28,7 @@ Reciprocal rank fusion
 * deepFM을 위한 모듈. 이것만 써도 되긴 되겠다
 ![from https://arxiv.org/abs/1703.04247](image-1.png)
 
-## GDCN
+## GDCN (SOTA - CTR - criteo)
 * Towards Deeper, Lighter and Interpretable Cross Network for CTR Prediction (2023)
     * https://arxiv.org/pdf/2311.04635v1
     * 고차원 상호작용 대한 설명력 및 효과를 증대시키기
