@@ -55,4 +55,4 @@ class GatedCrossLayerBlock(nn.Module):
 
             x = x0*(xc+self.bias[i])*xg + x
 
-        return x # [input_dim]
+        return x # [batch_size, input_dim]
