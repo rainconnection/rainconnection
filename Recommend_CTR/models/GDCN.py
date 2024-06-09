@@ -30,9 +30,9 @@ class GatedCrossLayerBlock(nn.Module):
         self.num_layers = num_layers
         self.gate_function = gate_function
         
-        self.wc = nn.ModuleList()
-        self.wg = nn.ModuleList()
-        self.bias = nn.ModuleList()
+        self.wc = nn.ModuleList() # weight of cross layer
+        self.wg = nn.ModuleList() # weight of gate layer
+        self.bias = nn.ModuleList() # bias
         for _ in range(self.num_layers):
             self.wc.append(nn.Linear(input_dim, input_dim))
             self.wg.append(nn.Linear(input_dim, input_dim))
